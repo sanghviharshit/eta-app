@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	tools:context=".controllers.CreateTripActivity" >
+	
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:scrollbarAlwaysDrawVerticalTrack="true"
+	    android:scrollbars="vertical" >
+
+		<EditText
+		    android:id="@+id/tripName"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:ems="10"
+		    android:hint="@string/trip_name"
+		    android:inputType="textCapWords" >
+
+		    <requestFocus />
+		</EditText>
+
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical" >
+
+		    <TextView
+		        android:id="@+id/tripLocationLabel"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Trip Location"
+		        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" >
+
+		        <TextView
+		            android:id="@+id/tripLocation"
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="30dp"
+		            android:layout_weight="0.5" />
+
+		        <Button
+		            android:id="@+id/btnChangeLocation"
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.5"
+		            android:text="Find" />
+
+		    </LinearLayout>
+		</LinearLayout>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+			android:orientation="vertical" >
+
+	        <TextView
+	            android:id="@+id/tripDateLabel"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/trip_date"
+	            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" >
+
+	            <TextView
+	                android:id="@+id/tripDate"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="30dp"
+	                android:layout_weight="0.5" />
+
+	            <Button
+	                android:id="@+id/btnChangeDate"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="0.5"
+	                android:text="Change Date" />
+
+	        </LinearLayout>
+	
+	    </LinearLayout>
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+			android:orientation="vertical" >
+
+			<TextView
+			    android:id="@+id/tripTimeLabel"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="@string/trip_time"
+			    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+			<LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+
+				<TextView
+				    android:id="@+id/tripTime"
+				    android:layout_width="0dp"
+				    android:layout_height="wrap_content"
+				    android:layout_marginLeft="30dp"
+				    android:layout_weight="0.5" />
+
+				<Button
+				    android:id="@+id/btnChangeTime"
+				    android:layout_width="0dp"
+				    android:layout_height="wrap_content"
+				    android:layout_weight="0.5"
+				    android:text="Change Time" />
+
+			</LinearLayout>
+	        
+	    </LinearLayout>
+
+	    <ListView
+	        android:id="@+id/listView1"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	    </ListView>
+	
+	    <Button
+	        android:id="@+id/button_trip_create_save"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="30dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="10dp"
+	        android:layout_marginTop="30dp"
+	        android:onClick="saveTrip"
+	        android:text="@string/button_trip_create" />
+	
+	</LinearLayout>
+</ScrollView>

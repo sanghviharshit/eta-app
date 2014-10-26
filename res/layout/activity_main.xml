@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Layout_MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <Button
+        android:id="@+id/button_trip_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startCreateTripActivity"
+        android:text="@string/button_trip_create" />
+
+    <Button
+        android:id="@+id/button_trip_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startViewTripActivity"
+        android:text="@string/button_trip_view" />
+
+    <TextView
+        android:id="@+id/newTripMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
