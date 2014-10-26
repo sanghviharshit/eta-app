@@ -5,17 +5,12 @@ import java.util.Calendar;
 import com.nyu.cs9033.eta.models.Trip;
 import com.nyu.cs9033.eta.R;
 
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.DialogFragment;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,30 +18,31 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-
 public class CreateTripActivity extends Activity {
 	public final static Integer MAX_ALLOWED_TRIPS = 20;
 	private static final String TAG = "CreateTripActivity";
 	public final static String NEW_TRIP = "New Trip Object";
 	
-	private static Trip trips[] = new Trip[MAX_ALLOWED_TRIPS];
-	private static Trip newTrip;
+	private Trip trips[] = new Trip[MAX_ALLOWED_TRIPS];
+	private Trip newTrip;
 	private static Integer tripId = 0;
-	private static TextView tripDisplayName;
-	private static TextView tripDisplayLocation;
-	private static TextView tripDisplayDate;
-	private static TextView tripDisplayTime;
-	private static TextView tripFriends[];
+	private TextView tripDisplayName;
+	private TextView tripDisplayLocation;
+	private TextView tripDisplayDate;
+	private TextView tripDisplayTime;
+	private TextView tripFriends[];
 	//private DatePicker dpResult;
-	private static Button btnChangeDate;
-	private static Button btnChangeTime;
+	private Button btnChangeDate;
+	private Button btnChangeTime;
 	 
 	//private TimePicker tripTimePicker;
-	static Calendar cal;
 	
-	private static int hour, minute = 0;
-	private static int year, month, day = 0;
-
+	private int hour, minute = 0;
+	private int year, month, day = 0;
+	
+	static final int DATE_DIALOG_ID = 998;
+	static final int TIME_DIALOG_ID = 999;
+	 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,6 +52,7 @@ public class CreateTripActivity extends Activity {
 		setCurrentDateOnView();
 		setCurrentTimeOnView();
 		addListenerOnButton();
+		
 	}
 	
 	private void initElements() {
@@ -63,7 +60,7 @@ public class CreateTripActivity extends Activity {
 		tripDisplayLocation = (TextView) this.findViewById(R.id.tripLocation);
 		tripDisplayDate = (TextView) this.findViewById(R.id.tripDate);
 		tripDisplayTime = (TextView) this.findViewById(R.id.tripTime);
-		cal = Calendar.getInstance();
+		
 	}
 
 	/**
@@ -89,6 +86,14 @@ public class CreateTripActivity extends Activity {
 	}
 
 	/**
+	 * For HW2 you should treat this method as a 
+	 * way of sending the Trip data back to the
+	 * main Activity.
+	 * 
+	 * Note: If you call finish() here the Activity 
+	 * will end and pass an Intent back to the
+	 * previous Activity using setResult().
+	 * 
 	 * @return whether the Trip was successfully 
 	 * saved.
 	 */
@@ -131,32 +136,23 @@ public class CreateTripActivity extends Activity {
 		btnChangeDate.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showDatePickerDialog(v);
+				showDialog(DATE_DIALOG_ID);
 			}
 		});
 		btnChangeTime.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showTimePickerDialog(v);
+				showDialog(TIME_DIALOG_ID);
 			}
 		});
 	}
 	
-	public void showDatePickerDialog(View v) {
-	    DialogFragment newFragment = new TimePickerFragment();
-	    newFragment.show(getFragmentManager(), "datePicker");
-	}
-	
-	public void showTimePickerDialog(View v) {
-	    DialogFragment newFragment = new TimePickerFragment();
-	    newFragment.show(getFragmentManager(), "timePicker");
-	}
-	
 	// display current date
 	public void setCurrentDateOnView() {
-		year = cal.get(Calendar.YEAR);
-		month = cal.get(Calendar.MONTH);
-		day = cal.get(Calendar.DAY_OF_MONTH);
+		final Calendar c = Calendar.getInstance();
+		year = c.get(Calendar.YEAR);
+		month = c.get(Calendar.MONTH);
+		day = c.get(Calendar.DAY_OF_MONTH);
 		
 		// set current date into textview
 		tripDisplayDate.setText(new StringBuilder()
@@ -170,8 +166,9 @@ public class CreateTripActivity extends Activity {
 	public void setCurrentTimeOnView() {
  
 		tripDisplayTime = (TextView) findViewById(R.id.tripTime);
-		hour = cal.get(Calendar.HOUR_OF_DAY);
-		minute = cal.get(Calendar.MINUTE);
+		final Calendar c = Calendar.getInstance();
+		hour = c.get(Calendar.HOUR_OF_DAY);
+		minute = c.get(Calendar.MINUTE);
  
 		// set current time into textview
 		tripDisplayTime.setText(
@@ -184,60 +181,67 @@ public class CreateTripActivity extends Activity {
 // 
 	}
 	
-	public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener 
-	{
-		
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState) 
-		{
-			// Use the current date as the default date in the picker
-			Log.i(TAG, "onCreateDialog");
-			int year = cal.get(Calendar.YEAR);
-			int month = cal.get(Calendar.MONTH);
-			int day = cal.get(Calendar.DAY_OF_MONTH);
-			
-			// Create a new instance of DatePickerDialog and return it
-			return new DatePickerDialog(getActivity(), this, year, month, day);
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case DATE_DIALOG_ID:
+		   // set date picker as current date
+		   return new DatePickerDialog(this, datePickerListener, year, month, day);
+
+		case TIME_DIALOG_ID:
+			// set time picker as current time
+			return new TimePickerDialog(this, 
+	                                    timePickerListener, hour, minute, false);
+	
 		}
-		
-		public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) 
-		{
-			// Do something with the date chosen by the user
-			Log.i(TAG, "onDateSet");
-			year = selectedYear;
-			month = selectedMonth;
-			day = selectedDay;
-			// set selected date into textview
-			tripDisplayDate.setText(new StringBuilder().append(month + 1)
-			   .append("-").append(day).append("-").append(year)
-			   .append(" "));			
-		}
+		return null;
 	}
 	
-	public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState) {
-			// Use the current time as the default values for the picker
-			final Calendar c = Calendar.getInstance();
-			int hour = c.get(Calendar.HOUR_OF_DAY);
-			int minute = c.get(Calendar.MINUTE);
-			
-			// Create a new instance of TimePickerDialog and return it
-			return new TimePickerDialog(getActivity(), this, hour, minute, DateFormat.is24HourFormat(getActivity()));
-		}
-			
-		public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
-			// Do something with the time chosen by the user
-			hour = selectedHour;
-			minute = selectedMinute;
- 
-			// set current time into textview
-			tripDisplayTime.setText(new StringBuilder().append(pad(hour))
-					.append(":").append(pad(minute)));
+	private DatePickerDialog.OnDateSetListener datePickerListener = 
+			new DatePickerDialog.OnDateSetListener() {
+		// when dialog box is closed, below method will be called.
+		public void onDateSet(DatePicker view, int selectedYear,
+			int selectedMonth, int selectedDay) {
+				year = selectedYear;
+				month = selectedMonth;
+				day = selectedDay;
+				
 
+				String tripDateText = year + "/" + (month+1) + "/" + day;
+				
+				System.out.println("YYYY/MM/DD: " + tripDateText);
+				
+				// set current date into textview
+				tripDisplayDate.setText(tripDateText);
+				
+				// set selected date into textview
+//				tripDate.setText(new StringBuilder().append(month + 1)
+//				   .append("-").append(day).append("-").append(year)
+//				   .append(" "));
+//				
+				// set selected date into datepicker also
+				//dpResult.init(year, month, day, null);			
 		}
-	}
-
+	};
+	
+	private TimePickerDialog.OnTimeSetListener timePickerListener = 
+			new TimePickerDialog.OnTimeSetListener() {
+		public void onTimeSet(TimePicker view, int selectedHour,
+			int selectedMinute) {
+				hour = selectedHour;
+				minute = selectedMinute;
+	 
+				// set current time into textview
+				tripDisplayTime.setText(new StringBuilder().append(pad(hour))
+						.append(":").append(pad(minute)));
+	 
+				// set current time into timepicker
+				//timePicker1.setCurrentHour(hour);
+				//timePicker1.setCurrentMinute(minute);
+	 
+		}
+	};
+	
 	private static String pad(int c) {
 		if (c >= 10)
 		   return String.valueOf(c);
