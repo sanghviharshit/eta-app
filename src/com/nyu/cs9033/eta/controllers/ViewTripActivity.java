@@ -6,6 +6,7 @@ import com.nyu.cs9033.eta.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.TextView;
 
 public class ViewTripActivity extends Activity {
@@ -77,7 +78,15 @@ public class ViewTripActivity extends Activity {
 			tripDate = (TextView) this.findViewById(R.id.trip_date);
 			
 			tripName.setText(passedTrip.getTripName());
-			tripDate.setText(passedTrip.getTripDate());
+			tripDate.setText(Long.toString(passedTrip.getTripTimeInMillis()));
 		}
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO settings
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
 	}
 }

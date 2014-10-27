@@ -4,12 +4,17 @@ import com.nyu.cs9033.eta.models.Trip;
 import com.nyu.cs9033.eta.R;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
 public class MainActivity extends Activity {
 
@@ -20,11 +25,19 @@ public class MainActivity extends Activity {
 	protected LinearLayout mainLayout;
 	private Trip savedTrip;
 	int requestCode;
+	SharedPreferences sharedpreferences;
+	public static final String APP_PREFERENCES = "App_Preferences";
+	public static final String startLocation = "startLocation"; 
+   
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		sharedpreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+		Editor editor = sharedpreferences.edit();
+		editor.putString(startLocation, "Jersey City, New Jersey");
+		editor.commit(); 
 	}
 
 	/**
@@ -48,7 +61,7 @@ public class MainActivity extends Activity {
 		Intent startViewTrip = new Intent(this, ViewTripActivity.class);
 		
 		if(savedTrip != null) {
-			startViewTrip.putExtra(SAVED_TRIP, savedTrip);	
+			//startViewTrip.putExtra(SAVED_TRIP, savedTrip);	
 		}	
 		startActivity(startViewTrip);
 	}
@@ -71,15 +84,21 @@ public class MainActivity extends Activity {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 1) {
 			if(resultCode == RESULT_OK){
-				savedTrip = (Trip) data.getParcelableExtra(CreateTripActivity.NEW_TRIP);
-				mainLayout = (LinearLayout) this.findViewById(R.id.Layout_MainActivity);
-				message = new TextView(this);
-				mainLayout.addView(message);
-				message.setText("New Trip Saved");	            
+				//savedTrip = (Trip) data.getParcelableExtra(CreateTripActivity.NEW_TRIP);
+				Toast.makeText(this, "New Trip Saved", Toast.LENGTH_LONG).show();	            
 	        }
 	        if (resultCode == RESULT_CANCELED) {
 	            //Write your code if there's no result
+	        	Toast.makeText(this, "Cancelled.", Toast.LENGTH_LONG).show();
 	        }
 		}
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO settings
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
 	}
 }
