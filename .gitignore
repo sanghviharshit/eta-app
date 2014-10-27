@@ -3,3 +3,7 @@ bin/*
 *.dex
 *.class
 
+
+bin/AndroidManifest.xml
+
+gen/com/nyu/cs9033/eta/R.java

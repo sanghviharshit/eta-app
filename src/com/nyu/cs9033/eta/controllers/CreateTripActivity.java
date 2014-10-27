@@ -3,6 +3,7 @@ package com.nyu.cs9033.eta.controllers;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.nyu.cs9033.eta.database.TripDatabaseHelper;
 import com.nyu.cs9033.eta.models.Person;
 import com.nyu.cs9033.eta.models.Trip;
 import com.nyu.cs9033.eta.models.TripLocation;
@@ -45,6 +46,8 @@ public class CreateTripActivity extends FragmentActivity {
 	private static final String TAG = "CreateTripActivity";
 	public final static String NEW_TRIP = "New Trip Object";
 
+	TripDatabaseHelper db;
+	
 	// private static Trip trip;
 	private ArrayList<Person> tripFriendsArray = new ArrayList<Person>();
 	private Person newFriend;
@@ -54,6 +57,9 @@ public class CreateTripActivity extends FragmentActivity {
 
 	SharedPreferences sharedpreferences;
 
+	private static long tripId;
+	private static long tripLocationId;
+	
 	private static Trip newTrip;
 	private static TripLocation newTripLocation;
 	private static TextView tripDisplayName;
@@ -92,6 +98,7 @@ public class CreateTripActivity extends FragmentActivity {
 	}
 
 	private void initElements() {
+		
 		sharedpreferences = getSharedPreferences(MainActivity.APP_PREFERENCES,
 				Context.MODE_PRIVATE);
 
@@ -157,6 +164,12 @@ public class CreateTripActivity extends FragmentActivity {
 	public boolean saveTrip() {
 
 		// TODO: Save in Database
+		
+		db = new TripDatabaseHelper(getApplicationContext());
+		tripId = db.insertTrip(newTrip);
+		tripLocationId = db.insertTripLocation(tripId, newTripLocation);
+		db.insertTripFriends(tripId, tripFriendsArray);
+		
 		Intent returnIntent = new Intent(this, MainActivity.class);
 		// Pass the Trip object to main activity
 		// returnIntent.putExtra(NEW_TRIP, newTrip);

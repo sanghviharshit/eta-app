@@ -8,6 +8,7 @@ import com.nyu.cs9033.eta.controllers.CreateTripActivity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 public class Trip {
 	
@@ -15,15 +16,16 @@ public class Trip {
 	// Please add additional fields
 	private int tripId;
 	private String tripName;
-
 	private String startLocation = "";
 	private ArrayList<Person> tripFriendsArray;
 	private static int numFriends = 0;
 	private TripLocation tripLocation;
-	
-	
 	private long tripTimeInMillis;
 
+	private static final String TAG = "Trip";
+	
+	public Trip() {
+	}
 	/**
 	 * Create a Trip model object from arguments
 	 * 
@@ -90,9 +92,14 @@ public class Trip {
 	public void setTripTimeInMillis(int year, int month, int day, int hour, int minute) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(year, month, day, hour, minute); 
-		this.tripTimeInMillis = calendar.getTimeInMillis();;
+		this.tripTimeInMillis = calendar.getTimeInMillis();
 	}
-
+	/**
+	 * @param trip date and time to set
+	 */
+	public void setTripTimeInMillis(long tripTimeInMillis) {
+		this.tripTimeInMillis = tripTimeInMillis;
+	}
 
 	public String getStartLocation() {
 		return startLocation;
@@ -114,15 +121,16 @@ public class Trip {
 
 
 	public void displayTrip() {
-		System.out.println(tripName);
-		System.out.println(startLocation);	
-		System.out.println(tripLocation.getTripLocationName());
-		System.out.println(tripLocation.getTripLocationAddress());
-		System.out.println(tripLocation.getTripLocationLat());
-		System.out.println(tripLocation.getTripLocationLong());
-		System.out.println(tripTimeInMillis);
+		Log.i(TAG, tripName);
+		Log.i(TAG, startLocation);	
+		Log.i(TAG, tripLocation.getTripLocationName());
+		Log.i(TAG, tripLocation.getTripLocationAddress());
+		Log.i(TAG, Double.toString(tripLocation.getTripLocationLat()));
+		Log.i(TAG, Double.toString(tripLocation.getTripLocationLong()));
+		Log.i(TAG, Double.toString(tripTimeInMillis));
+		
 		for(int i=0;i<tripFriendsArray.size();i++) {
-			System.out.println(tripFriendsArray.get(i).getName() + ", " + tripFriendsArray.get(i).getEmail());
+			Log.i(TAG, tripFriendsArray.get(i).getName() + ", " + tripFriendsArray.get(i).getEmail());
 		}
 	}
 
