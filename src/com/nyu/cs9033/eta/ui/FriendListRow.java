@@ -22,18 +22,18 @@ public class FriendListRow extends LinearLayout {
         //setGravity(Gravity.CENTER_VERTICAL);
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            inflater.inflate(R.layout.freiend_list_row, this, true);
+            inflater.inflate(R.layout.friend_list_row, this, true);
             
         //((Activity)getContext()).getLayoutInflater().inflate(R.layout.list_view_row_person, this);
     }
     public FriendListRow(Context context) {
         super(context);
-        ((Activity)getContext()).getLayoutInflater().inflate(R.layout.freiend_list_row, this);
+        ((Activity)getContext()).getLayoutInflater().inflate(R.layout.friend_list_row, this);
 
     }
     public FriendListRow(Context context, String friend) {
         super(context);
-        ((Activity)getContext()).getLayoutInflater().inflate(R.layout.freiend_list_row, this);
+        ((Activity)getContext()).getLayoutInflater().inflate(R.layout.friend_list_row, this);
         textContent = (TextView) findViewById(R.id.textViewContent);
         textContent.setText(friend);
         setupViews();

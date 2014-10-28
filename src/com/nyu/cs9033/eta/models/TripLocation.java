@@ -2,7 +2,7 @@ package com.nyu.cs9033.eta.models;
 
 
 public class TripLocation {
-	
+	private long tripId;
 	private String tripLocationName;
 	private String tripLocationAddress;
 	private double tripLocationLat;
@@ -12,6 +12,9 @@ public class TripLocation {
     public static final double MAX_LNG = 180;
     public static final double MIN_LNG = -180;
     
+    public TripLocation() {
+    	
+    }
 	public TripLocation(String tripLocationName, String tripLocationAddress, double tripLocationLat, double tripLocationLong) {
 		setTripLocationName(tripLocationName);
 		setTripLocationAddress(tripLocationAddress);
@@ -60,6 +63,12 @@ public class TripLocation {
 	public void setTripLocationLong(double tripLocationLong) {
 		// TODO validation
 		this.tripLocationLong = tripLocationLong;
+	}
+	public long getTripId() {
+		return tripId;
+	}
+	public void setTripId(long tripId) {
+		this.tripId = tripId;
 	}
 	
 	

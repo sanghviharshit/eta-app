@@ -26,7 +26,7 @@
                 android:text="Trip Name"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <EditText
+            <TextView android:text="TextView"
                 android:id="@+id/tripName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -34,10 +34,11 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/trip_name"
-                android:inputType="textCapWords" >
+                android:inputType="textCapWords"
+                android:textAppearance="?android:attr/textAppearanceMedium" >
 
                 <requestFocus />
-            </EditText>
+            </TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -58,48 +59,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-                    <EditText
-                        android:id="@+id/tripArea"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="0.5"
-                        android:ems="10"
-                        android:hint="Area"
-                        android:inputType="textCapWords"
-                        android:text="Ahmedabad" />
-
-                    <EditText
-                        android:id="@+id/tripAreaType"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="0.5"
-                        android:ems="10"
-                        android:hint="Area type"
-                        android:inputType="textCapWords"
-                        android:text="Ankur" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnChangeLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="Look up" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -124,13 +83,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_weight="0.5" />
-
-                <Button
-                    android:id="@+id/btnChangeDate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:text="Change Date" />
             </LinearLayout>
         </LinearLayout>
 
@@ -157,13 +109,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_weight="0.5" />
-
-                <Button
-                    android:id="@+id/btnChangeTime"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:text="Change Time" />
             </LinearLayout>
         </LinearLayout>
 
@@ -185,16 +130,6 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnAddFriend"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="30dp"
-            android:text="Add Friends" />
-
-        <Button
             android:id="@+id/btnUpdateTrip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -202,7 +137,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:text="@string/button_trip_create" />
+            android:text="Edit" />
     </LinearLayout>
 
 </ScrollView>

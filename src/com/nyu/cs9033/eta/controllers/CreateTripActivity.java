@@ -74,7 +74,7 @@ public class CreateTripActivity extends FragmentActivity {
 	private static Button btnCreateTrip;
 
 	// private TimePicker tripTimePicker;
-	static Calendar cal;
+	Calendar cal;
 
 	private static int hour, minute = 0;
 	private static int year, month, day = 0;
@@ -106,7 +106,6 @@ public class CreateTripActivity extends FragmentActivity {
 		tripDisplayLocation = (TextView) this.findViewById(R.id.tripLocation);
 		tripDisplayDate = (TextView) this.findViewById(R.id.tripDate);
 		tripDisplayTime = (TextView) this.findViewById(R.id.tripTime);
-		cal = Calendar.getInstance();
 		// our adapter instance
 
 		// personData[0] = new Person("Heta1","shethheta1991@gmail.com");
@@ -199,7 +198,7 @@ public class CreateTripActivity extends FragmentActivity {
 		btnChangeTime = (Button) findViewById(R.id.btnChangeTime);
 		btnAddFriend = (Button) findViewById(R.id.btnAddFriend);
 		btnChangeLocation = (Button) findViewById(R.id.btnChangeLocation);
-		btnCreateTrip = (Button) findViewById(R.id.btnCreateTrip);
+		btnCreateTrip = (Button) findViewById(R.id.btnUpdateTrip);
 
 		btnChangeDate.setOnClickListener(new OnClickListener() {
 			@Override
@@ -273,6 +272,7 @@ public class CreateTripActivity extends FragmentActivity {
 
 	// display current date
 	public void setCurrentDateOnView() {
+		cal = Calendar.getInstance();
 		year = cal.get(Calendar.YEAR);
 		month = cal.get(Calendar.MONTH);
 		day = cal.get(Calendar.DAY_OF_MONTH);
@@ -287,7 +287,7 @@ public class CreateTripActivity extends FragmentActivity {
 
 	// display current time
 	public void setCurrentTimeOnView() {
-
+		cal = Calendar.getInstance();
 		tripDisplayTime = (TextView) findViewById(R.id.tripTime);
 		hour = cal.get(Calendar.HOUR_OF_DAY);
 		minute = cal.get(Calendar.MINUTE);

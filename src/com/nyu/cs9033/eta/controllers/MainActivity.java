@@ -6,6 +6,7 @@ import com.nyu.cs9033.eta.R;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,7 +29,9 @@ public class MainActivity extends Activity {
 	SharedPreferences sharedpreferences;
 	public static final String APP_PREFERENCES = "App_Preferences";
 	public static final String startLocation = "startLocation"; 
-   
+
+	private static Button btnTripCreate;
+	private static Button btnTripsView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +40,28 @@ public class MainActivity extends Activity {
 		sharedpreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 		Editor editor = sharedpreferences.edit();
 		editor.putString(startLocation, "Jersey City, New Jersey");
-		editor.commit(); 
+		editor.commit();
+		initElements();
 	}
 
+	private void initElements() {
+		btnTripCreate = (Button) findViewById(R.id.btnTripCreate);
+		btnTripsView = (Button) findViewById(R.id.btnTripsView);
+
+		btnTripCreate.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startCreateTripActivity(v);
+			}
+		});
+
+		btnTripsView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startTripHistoryActivity(v);
+			}
+		});
+	}
 	/**
 	 * This method should start the
 	 * Activity responsible for creating
@@ -57,13 +79,13 @@ public class MainActivity extends Activity {
 	 * Activity responsible for viewing
 	 * a Trip.
 	 */
-	public void startViewTripActivity(View view) {
-		Intent startViewTrip = new Intent(this, ViewTripActivity.class);
+	public void startTripHistoryActivity(View view) {
+		Intent startTripHistoryActivity = new Intent(this, TripHistoryActivity.class);
 		
 		if(savedTrip != null) {
 			//startViewTrip.putExtra(SAVED_TRIP, savedTrip);	
 		}	
-		startActivity(startViewTrip);
+		startActivity(startTripHistoryActivity);
 	}
 	
 	/**

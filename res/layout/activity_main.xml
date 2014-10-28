@@ -11,17 +11,15 @@
     tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/button_trip_create"
+        android:id="@+id/btnTripCreate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="startCreateTripActivity"
         android:text="@string/button_trip_create" />
 
     <Button
-        android:id="@+id/button_trip_view"
+        android:id="@+id/btnTripsView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="startViewTripActivity"
         android:text="@string/button_trip_view" />
 
     <TextView

@@ -128,7 +128,7 @@ public class Trip {
 		Log.i(TAG, Double.toString(tripLocation.getTripLocationLat()));
 		Log.i(TAG, Double.toString(tripLocation.getTripLocationLong()));
 		Log.i(TAG, Double.toString(tripTimeInMillis));
-		
+
 		for(int i=0;i<tripFriendsArray.size();i++) {
 			Log.i(TAG, tripFriendsArray.get(i).getName() + ", " + tripFriendsArray.get(i).getEmail());
 		}
