@@ -191,11 +191,11 @@ public class TripDatabaseHelper extends SQLiteOpenHelper {
 		return tripLocation;
 	}
 	
-	public List<Person> getAllTripFriends() {
+	public List<Person> getAllTripFriends(long tripId) {
 		List<Person> tripFriendList = new ArrayList<Person>();
 
 		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery("select * from " + TABLE_PERSON, null);
+		Cursor cursor = db.rawQuery("select * from " + TABLE_PERSON + " where " + COLUMN_PERSON_TRIPID + "=" + Long.toString(tripId), null);
 
 		// loop through all query results
 		for (cursor.moveToFirst(); !cursor.isAfterLast(); 
@@ -208,5 +208,27 @@ public class TripDatabaseHelper extends SQLiteOpenHelper {
 			tripFriendList.add(person);
 		}
 		return tripFriendList;
+	}
+
+	public Trip getTrip(long tripId) {
+		Trip trip = null;
+
+		SQLiteDatabase db = this.getReadableDatabase();
+		Log.i(TAG,"select * from " + TABLE_TRIP + " where " + COLUMN_TRIP_ID + "=" + Long.toString(tripId));
+		
+		Cursor cursor = db.rawQuery("select * from " + TABLE_TRIP + " where " + COLUMN_TRIP_ID + "=" + Long.toString(tripId), null);
+
+		if (cursor.moveToFirst()) {
+			Log.w(TAG,"Found Trip");
+
+			trip = new Trip();
+			trip.setTripId(cursor.getInt(0));
+			trip.setTripName(cursor.getString(1));
+			trip.setTripTimeInMillis(cursor.getLong(2));
+		}
+		else {
+			Log.w(TAG,"No Trip Found");
+		}
+		return trip;
 	}
 }

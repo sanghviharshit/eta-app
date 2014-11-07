@@ -26,19 +26,19 @@
                 android:text="Trip Name"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <TextView android:text="TextView"
+            <TextView
                 android:id="@+id/tripName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/trip_name"
                 android:inputType="textCapWords"
-                android:textAppearance="?android:attr/textAppearanceMedium" >
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <requestFocus />
-            </TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -57,8 +57,11 @@
                 android:id="@+id/tripLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:hint="Trip Location" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -81,8 +84,12 @@
                     android:id="@+id/tripDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="30dp"
-                    android:layout_weight="0.5" />
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:hint="Trip Date" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -107,8 +114,12 @@
                     android:id="@+id/tripTime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="30dp"
-                    android:layout_weight="0.5" />
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:hint="Trip Time" />
+
             </LinearLayout>
         </LinearLayout>
 

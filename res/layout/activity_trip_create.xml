@@ -76,8 +76,7 @@
                         android:layout_weight="0.5"
                         android:ems="10"
                         android:hint="Area"
-                        android:inputType="textCapWords"
-                        android:text="Ahmedabad" />
+                        android:inputType="textCapWords" />
 
                     <EditText
                         android:id="@+id/tripAreaType"
@@ -87,8 +86,7 @@
                         android:layout_weight="0.5"
                         android:ems="10"
                         android:hint="Area type"
-                        android:inputType="textCapWords"
-                        android:text="Ankur" />
+                        android:inputType="textCapWords" />
 
                 </LinearLayout>
 

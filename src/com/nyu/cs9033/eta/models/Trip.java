@@ -14,7 +14,7 @@ public class Trip {
 	
 	// Member fields should exist here, what else do you need for a trip?
 	// Please add additional fields
-	private int tripId;
+	private long tripId;
 	private String tripName;
 	private String startLocation = "";
 	private ArrayList<Person> tripFriendsArray;
@@ -40,14 +40,14 @@ public class Trip {
 	/**
 	 * @return the tripId
 	 */
-	public int getTripId() {
+	public long getTripId() {
 		return tripId;
 	}
 
 	/**
 	 * @param tripId the tripId to set
 	 */
-	public void setTripId(int tripId) {
+	public void setTripId(long tripId) {
 		this.tripId = tripId;
 	}
 

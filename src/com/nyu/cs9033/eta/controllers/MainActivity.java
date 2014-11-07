@@ -37,6 +37,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		setTitle("ETA");
 		sharedpreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 		Editor editor = sharedpreferences.edit();
 		editor.putString(startLocation, "Jersey City, New Jersey");

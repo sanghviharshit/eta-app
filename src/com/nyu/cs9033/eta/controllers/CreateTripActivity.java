@@ -90,7 +90,7 @@ public class CreateTripActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trip_create);
-
+		setTitle("ETA: Create Trip");
 		initElements();
 		setCurrentDateOnView();
 		setCurrentTimeOnView();
